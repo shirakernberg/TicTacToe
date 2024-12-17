@@ -39,14 +39,8 @@ int downwardsDaigonalStreak(Board game)
 }
 int main()
 {
-    int boardSize, win ;
-    cout << "Welcome to TicTacToe!\n";
-    cout << "Please enter the size of board u want to play with:\n";
-    cin >> boardSize;
-    cout << "Please enter how many X or O needed to win:\n";
-    cin >> win;
 
-    Board game(boardSize , win);
+    Board game(4 , 4);
     game.print();
     for( int i = 0 ; i < 16 ; i++ )
     {
