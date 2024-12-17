@@ -15,17 +15,26 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
+  # This workflow contains a single job called "build-and-run"
+  build-and-run:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-      - uses: actions/checkout@v4
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-      # Runs a set of commands using the runners shell
-      - name: Run a multi-line script
-        run: |
-          main.cpp
+      # Step 2: Install g++ (C++ compiler)
+      - name: Install C++ compiler
+        run: sudo apt-get update && sudo apt-get install -y g++
+
+      # Step 3: Compile the main.cpp file
+      - name: Compile main.cpp
+        run: g++ -o main main.cpp
+
+      # Step 4: Run the compiled program
+      - name: Run program
+        run: ./main
+
