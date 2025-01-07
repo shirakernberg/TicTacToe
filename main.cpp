@@ -1,7 +1,7 @@
 #include "Board.h"
 #include<iostream>
 using std::cin, std::cout;
-int rowStreak(Board game)
+int rowStreak(Board &game)
 {
     int sum {0};
     sum += game.insertSymbol("X" , 0 , 0 );
@@ -10,16 +10,16 @@ int rowStreak(Board game)
     sum += game.insertSymbol("X" , 0 , 3 );
     return sum;
 }
-int colStreak(Board game)
+int colStreak(Board &game)
 {
     int sum {0};
+    sum += game.insertSymbol("X" , 0 , 0 );
     sum += game.insertSymbol("X" , 1 , 0 );
     sum += game.insertSymbol("X" , 2 , 0 );
     sum += game.insertSymbol("X" , 3 , 0 );
-    sum += game.insertSymbol("X" , 4 , 0 );
     return sum;
 }
-int upwardsDaigonalStreak(Board game)
+int upwardsDaigonalStreak(Board &game)
 {
     int sum {0};
     sum += game.insertSymbol("X" , 0 , 3 );
@@ -28,7 +28,7 @@ int upwardsDaigonalStreak(Board game)
     sum += game.insertSymbol("X" , 3 , 0 );
     return sum;
 }
-int downwardsDaigonalStreak(Board game)
+int downwardsDaigonalStreak(Board &game)
 {
     int sum {0};
     sum += game.insertSymbol("X" , 0 , 0 );
@@ -40,31 +40,30 @@ int downwardsDaigonalStreak(Board game)
 int main()
 {
 
-    Board game(4 , 4);
-    game.print();
-    for( int i = 0 ; i < 16 ; i++ )
+    Board game1(4 , 4);
+    game1.print();
+    if (rowStreak(game1) < 0 )
     {
-        if (rowStreak(game) < 0 )
-        {
-            return -1;
-        }
-
-        game.print();
-        if (colStreak(game) < 0 )
-        {
-            return -1;
-        }
-        game.print();
-        if (upwardsDaigonalStreak(game) < 0)
-        {
-            return -1;
-        }
-        game.print();
-        if (downwardsDaigonalStreak(game) < 0)
-        {
-            return -1;
-        }
-        game.print();
+        return -1;
     }
+    game1.print();
+    Board game2(4 , 4);
+    if (colStreak(game2) < 0 )
+    {
+        return -1;
+    }
+    game2.print();
+    Board game3(4 , 4);
+    if (upwardsDaigonalStreak(game3) < 0)
+    {
+        return -1;
+    }
+    game3.print();
+    Board game4(4 , 4);
+    if (downwardsDaigonalStreak(game4) < 0)
+    {
+        return -1;
+    }
+    game4.print();
     return 0;
 }
