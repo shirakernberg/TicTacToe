@@ -30,11 +30,10 @@ jobs:
       - name: Install C++ compiler
         run: sudo apt-get update && sudo apt-get install -y g++
 
-      # Step 3: Compile the main.cpp file
-      - name: Compile main.cpp
-        run: g++ -o main main.cpp
+      # Step 3: Compile all C++ files (e.g., main.cpp and other files like Board.cpp)
+      - name: Compile source files
+        run: g++ -o main *.cpp
 
       # Step 4: Run the compiled program
       - name: Run program
         run: ./main
-

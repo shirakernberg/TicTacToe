@@ -3,11 +3,11 @@
 #include<iostream>
 using std::cin, std::cout;
 
-Board::Board(int size , int win)//constructor
+Board::Board(int size , int win)
 {
     winningStreak = win;
-    board = vector < vector < string> >(size);
-    for (int row = 0; row < size; row++) //initalzing board
+    board = vector<vector<string>>(size);
+    for (int row = 0; row < size; row++) //initializing board
     {
         vector< string > rowVec(size);
         for (int collum = 0 ; collum < size ; collum++)
@@ -20,13 +20,13 @@ Board::Board(int size , int win)//constructor
 }
 int Board::insertSymbol(string symbol , int row , int col)//inserting a symbol on the board
 {
-    if( symbol == "X" )
+    if(symbol == "X")
     {
-      if( board.at( row ).at( col ) != "O" )//if the spot isnt already taken
+      if( board.at(row).at(col) != "O" )//if the spot isn't already taken
       {
           counterX++;
           board.at( row ).at( col ) = symbol;
-          if( counterX == winningStreak && iStreak( board , symbol) )
+          if( counterX == winningStreak && iStreak(board , symbol))
           {
             cout<< "Congratulations! Player X wins !\n";
             return 0;
@@ -40,11 +40,11 @@ int Board::insertSymbol(string symbol , int row , int col)//inserting a symbol o
     }
     else// its a O sybmol
     {
-        if( board.at(row).at(col) != "X" )//if the spot isnt already taken
+        if( board.at(row).at(col) != "X" )//if the spot isn't already taken
         {
             counterO++;
             board.at(row).at(col) = symbol;
-            if( counterO == winningStreak && iStreak( board , symbol ) )//checkimg if it was a winning move
+            if( counterO == winningStreak && iStreak( board , symbol ) )//checking if it was a winning move
             {
                 cout<< "Congratulations! Player 0 wins !\n";
                 return 0;
